@@ -15,6 +15,15 @@ const App: React.FC = () => {
     setInputValue(""); // (004e)
   };
 
+  const toggleTodo = (index: number) => {
+    setTodos(
+      todos.map(
+        (todo, i) =>
+          i === index ? { ...todo, completed: !todo.completed } : todo // (006c, throws errors)
+      )
+    );
+  };
+
   return (
     <div>
       <h1>My Todo App</h1>
@@ -38,7 +47,15 @@ const App: React.FC = () => {
               todo,
               index // (004f)
             ) => (
-              <li key={index}>{todo}</li> // (004g)
+              <li
+                onClick={() => toggleTodo(index)} // (006a)
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                }} // (006b)
+                key={index}
+              >
+                {todo}
+              </li> // (004g)
             )
           )
         )}
