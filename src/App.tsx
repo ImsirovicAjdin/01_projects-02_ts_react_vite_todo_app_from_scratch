@@ -30,12 +30,16 @@ const App: React.FC = () => {
         Add Todo
       </button>
       <ul>
-        {todos.map(
-          (
-            todo,
-            index // (004f)
-          ) => (
-            <li key={index}>{todo}</li> // (004g)
+        {todos.length === 0 ? ( // (005a)
+          <li>No todos available. Add one above!</li> // (005b)
+        ) : (
+          todos.map(
+            (
+              todo,
+              index // (004f)
+            ) => (
+              <li key={index}>{todo}</li> // (004g)
+            )
           )
         )}
         <li>Go shopping</li>
